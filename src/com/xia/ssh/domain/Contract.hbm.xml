@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xia.ssh.domain.Contract" table="contract">
+		<id name="contract_id" column="contract_id">
+			<generator class="native" />
+		</id>
+		<property name="contract_number" column="contract_number" />
+		<property name="contract_time" column="contract_time" />
+		<property name="contract_context" column="contract_context" />
+
+		<!-- 配置与客户的关联关系 -->
+		<many-to-one name="customer"  lazy="false" class="com.xia.ssh.domain.Customer" column="contract_cust_id"/>
+		<!-- 配置与用户的关联关系 -->
+		<many-to-one name="user"  lazy="false" class="com.xia.ssh.domain.User" column="contract_user_id"/>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- 建立类与表的映射 -->
+	<class name="com.xia.ssh.domain.User" table="sys_user">
+		<!-- 建立类中的属性与表的主键对应 -->
+		<id name="user_id" column="user_id">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+		<!-- 建立普通属性和表的字段相对应 --> 
+		<property name="user_name" column="user_name"></property>
+		<property name="user_code" column="user_code"></property>
+		<property name="user_password" column="user_password"></property>
+		<property name="user_state" column="user_state"></property>
+		<property name="user_qq" column="user_qq"></property>
+		<property name="user_phone" column="user_phone"></property>
+		<property name="user_gender" column="user_gender"></property>
+		<property name="user_email" column="user_email"></property>
+		<property name="user_right" column="user_right"></property>
+		<property name="user_createTime" column="user_createTime"></property>
+	
+		<set name="user_saleVisits" cascade="save-update,delete" inverse="true">
+			<key column="visit_user_id" />
+			<one-to-many class="com.xia.ssh.domain.SaleVisit" />
+		</set>
+		
+		<set name="user_contract" cascade="save-update,delete" inverse="true">
+			<key column="contract_user_id" />
+			<one-to-many class="com.xia.ssh.domain.Contract" />
+		</set>
+	
+	</class>
+</hibernate-mapping>
